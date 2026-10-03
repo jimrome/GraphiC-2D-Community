@@ -1,0 +1,33 @@
+# Build outputs
+build/
+bin/
+lib/*.a
+lib/*.dylib
+lib/*.so
+lib/*.dll
+*.o
+*.obj
+*.mod
+
+# Plot outputs
+*.svg
+*.html
+*.tkf
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+
+# Julia
+Manifest.toml
+
+# Java
+target/
+*.class
+*.jar
+
+# OS
+.DS_Store
+Thumbs.db

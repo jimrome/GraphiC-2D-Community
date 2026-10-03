@@ -1,0 +1,14 @@
+name = "graphic"
+version = "2026.1.0"
+license = "Community"
+author = "James Rome, Sc.D."
+maintainer = "James Rome"
+description = "GraphiC 2026 Scientific Vector Plotting Engine for Modern Fortran"
+
+[build]
+auto-executables = false
+auto-examples = true
+
+[library]
+source-dir = "Source"
+include-dir = ["Include"]

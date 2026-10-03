@@ -1,0 +1,1081 @@
+******************************************************************** MESSAGES
+
+@M001
+@
+The allowable choices are:
+    c -- convert TKF file to another format
+    f -- redirect printer dump to a file
+    l -- large, low resolution plot
+    L -- large, high resolution plot
+    m -- medium sized, low resolution plot
+    M -- medium sized, high resolution plot
+@
+
+@M002
+@    n -- PLAY a new TKF file
+@
+
+@M003
+@    p -- change printer selections
+    q -- quit and close files
+    s -- color separation output
+    v -- vary PostScript parameters
+    w -- shrink picture to fit window
+    z -- zoom marked area to fill screen
+@
+
+@M004
+@    1 thru 9 -- skip n pictures
+@
+
+@M005
+@
+Do you want PostScript Level 2? (Y/N) @
+
+@M006
+@    CR -- go on to next plot
+    space bar -- replay current plot
+Enter choice: @
+
+@M007
+@
+Do you want the background color suppressed? (Y/N) @
+
+@M008
+@
+Do you want (1) 4014 or (2) 4105 output? (1/2) @
+
+@M010
+@
+The choices for a file conversion are:
+    0 -- Abort
+    1 -- Lotus PIC file
+    2 -- Digital Research or Ventura GEM file
+    3 -- Hewlett Packard plotter HP-GL file
+    4 -- Encapsulated PostScript file
+    5 -- TIFF bit image file
+    6 -- CGM (Computer Graphics Metafile)
+    7 -- Agfa SCODL file
+    8 -- Tektronix 4105 standard output
+Enter choice: @
+
+@M011
+@
+You need to run EQUIP and put the configuration files in
+either the default directory or the directory specified by
+the set GPC(286)(WIN)=<path> command in your autoexec.bat file.
+@
+
+@M012
+@
+Enter TKF file name or a carriage return to quit: @
+
+@M013
+@
+Couldn't open TKF file.
+@
+
+@M014
+@
+Enter your next option: @
+
+@M015
+@
+The choices for printer/plotter configuration files are:
+    1 -- PRINTER1.PRN
+    2 -- PRINTER2.PRN
+    3 -- PRINTER3.PRN
+    4 -- PRINTER4.PRN
+Enter choice: @
+
+@M016
+@
+Print Made.
+@
+
+@M017
+@
+Print time was: @
+
+@M018
+@
+Enter TKF file name or a carriage return to return to the current file: @
+
+@M019
+@
+Allocating printer buffer @
+
+@M020
+@
+Freeing printer buffer @
+
+@M021
+@
+Color separation will occur on your next printer dump or file conversion.
+@
+
+@M022
+@
+No printer has been assigned to the printer configuration file which you
+have chosen.  Run EQUIP or try a different printer configuration file.
+@
+
+@M023
+@
+Redirect printer dump to a disk file. This file contains commands which
+are normally sent directly to the printer or plotter. The file will be
+closed after a single frame.
+Enter filename: @
+
+@M024
+@
+EMM error = @
+
+@M025
+@
+Not enough memory for printer dump.
+@
+
+@M026
+@
+Enter the line width in pixels (1 thru 32): @
+
+@M027
+@
+The default font is BINARY.FNT
+
+
+   ( 0) Times - Roman                 (15) Palatino - BoldItalic
+   ( 1) Times - Bold                  (16) Bookman - Demi
+   ( 2) Times - Italic                (17) Bookman - DemiItalic
+   ( 3) Times - BoldItalic            (18) Bookman - Light
+   ( 4) Helvetica                     (19) Bookman - LightItalic
+   ( 5) Helvetica - Bold              (20) NewCenturySchlbk - Roman
+   ( 6) Helvetica - Oblique           (21) NewCenturySchlbk - Bold
+   ( 7) Helvetica - BoldOblique       (22) NewCenturySchlbk - Italic
+   ( 8) Courier                       (23) NewCenturySchlbk - BoldItalic
+   ( 9) Courier - Bold                (24) Helvetica - Narrow - BoldOblique
+   (10) Courier - Oblique             (25) Helvetica - Narrow
+   (11) Courier - BoldOblique         (26) Helvetica - Narrow - Bold
+   (12) Palatino - Roman              (27) Helvetica - Narrow - Oblique
+   (13) Palatino - Bold               (28) Symbol
+   (14) Palatino - Italic             (29) ZapfDingbats
+
+
+Enter the number of the desired font OR
+press RETURN to keep the default: @
+
+@M028
+@
+Invalid entry.
+@
+
+@M029
+@
+Type a 'q' to abort all remaining plots.
+Any other key to continue with the next plot.
+@
+
+@M030
+@file conversion complete.
+@
+
+@M031
+@
+Do you want color information put into the PostScript file? (Y/N) @
+
+@M032
+@
+Do you want a TIFF image put into the file to make it viewable? (Y/N) @
+
+@M033
+@
+Is the top of your plot on the left, right, or top of the screen?@
+
+@M034
+@
+Enter l, r, or t: @
+
+@M035
+@
+Enter the path and name of the output file.@
+
+@M036
+@
+Use the extension .EPS: @
+
+@M037
+@
+Use the extension .POS: @
+
+@M038
+@
+Use the extension .PIC: @
+
+@M039
+@
+Use the extension .GEM: @
+
+@M040
+@
+Use the extension .TIF: @
+
+@M041
+@
+Use the extension .HPG: @
+
+@M042
+@
+Use the extension .CGM: @
+
+@M043
+@
+Use the extension .SCD: @
+
+@M044
+@
+Error opening output file.
+@
+
+@M045
+@
+Error writing output file.
+@
+
+@M046
+@
+Error closing output file.
+@
+
+@M047
+@
+The available TIFF pixel resolutions are:
+    1 -- 160 x 120
+    2 -- 320 x 240
+    3 -- 640 x 480
+    4 -- 800 x 600
+Select a number between 1 and 4: @
+
+@M048
+@
+Starting the PostScript conversion...
+@
+
+@M050
+@
+Please wait while the file is converted...
+@
+
+@M051
+@
+Do you want an `L' or an `M' dump?@
+
+@M052
+@
+Enter L or M: @
+
+@M053
+@
+Print Aborted.
+@
+
+@M054
+@
+Allocating scratch buffer @
+
+@M055
+@
+Freeing scratch buffer @
+
+@M056
+@
+Can't allocate memory for scratch buffer @
+
+@M057
+@
+Use the extension .TEK: @
+
+******************************************************************** WARNINGS
+
+@W001
+@
+Error closing file.
+@
+
+@W002
+@
+Allocation failed. Insufficient memory.
+@
+
+@W003
+@
+The program has encountered a twisted polygon. Some file formats do not
+process twisted polygons correctly. GraphiC attempts to split the polygon
+at the crossing point. There was not enough memory to split this panel.
+@
+
+@W004
+@
+In page(), x was chosen too long. Has been shortened.
+@
+
+@W005
+@
+In page(), y was chosen too long. Has been shortened.
+@
+
+@W006
+@
+In area2d(), x-axis too long. Size has been reduced.
+@
+
+@W007
+@
+In area2d(), y-axis too long. Size has been reduced.
+@
+
+@W008
+@
+Can not have upright labels on log axis.
+@
+
+@W009
+@
+Z value was greater than the maximum axis value.
+@
+
+@W010
+@
+Z value was less than the minimum axis value.
+@
+
+@W011
+@
+Can not have right-hand log axis.
+@
+
+@W012
+@
+Max font line width is 21.
+@
+
+@W013
+@
+X value out of range. Has been reduced.
+@
+
+@W014
+@
+Y value out of range. Has been reduced.
+@
+
+@W015
+@
+Window goes off the page. Size has been reduced.
+@
+
+@W016
+@
+Data maximum and minimum values are equal.
+The axis will be scaled from the data value + 1. to the
+data value -1.. Curves drawn from this data will be flat.
+@
+
+@W017
+@
+Could not find GPC(286)(WIN) environment variable.
+@
+
+@W018
+@
+Invalid histogram type.
+Type set to 0 for outline histogram.
+@
+
+@W019
+@
+Could not capture Ctrl-C interrupt.
+@
+
+@W020
+@
+Could not capture floating point interrupt.
+@
+
+@W021
+@
+Step size cannot be 0. Reset for 5 levels.
+@
+
+@W022
+@
+No memory allocated for the arrays the curson() function uses to store
+points.
+@
+
+@W023
+@
+For panel filling, define PANEL in USER.H and rebuild GRAPHIC.LIB.
+@
+
+@W024
+@
+Can't read pointer table.
+@
+
+@W025
+@
+Could not capture abnormal abort interrupt.
+@
+
+@W026
+@
+A string containing a Non-recognized character was passed into the text
+drawing routines. 
+@
+
+@W027
+@
+Can not plot a 0 length vector.
+@
+
+@W028
+@
+Number of points is 0 in call to curve(). Nothing drawn.
+@
+
+@W029
+@
+Error writing to .TKF file.
+@
+
+@W030
+@
+Error writing to .OFF file.
+@
+
+@W031
+@
+RGB values must be in the range 0 - 63.
+@
+
+@W032
+@
+Too many fonts were requested. Only the first four will be used.
+To increase the number of allowed fonts change FNTNUM in FNTPLT.C and
+rebuild the GraphiC library.
+@
+
+@W033
+@
+A string passed to putlabel() is too long. The maximum string length is
+240 characters.
+@
+
+@W034
+@
+The font selection character used in the call to setspacing() was not
+one of the selection characters you loaded. The constant spacing will
+set active for the current active font.
+@
+
+@W035
+@
+The requested x-crossing value is too small. The crossing has been shifted
+to the left edge of the plot.
+@
+
+@W036
+@
+The requested y-crossing value is too small. The crossing has been shifted
+to the bottom of the plot.
+@
+
+@W037
+@
+The requested x-crossing value is too big. The crossing has been shifted
+to the left edge of the plot.
+@
+
+@W038
+@
+The requested y-crossing value is too big. The crossing has been shifted
+to the bottom of the plot.
+@
+
+@W039
+@
+Axes can not cross at (0,0). (0,0) is beyond the range of the axes.
+@
+
+@W040
+@
+The value of the maxq variable is less than the value of the orig
+variable. Reversing the values.
+@
+
+@W041
+@
+The step size is negative. The contour levels must go from lowest to
+highest. Making step positive..
+@
+
+@W042
+@
+The input string is too long. The string will be broken up into pieces 200
+characters long with each piece printed on a separate line.
+@
+
+@W043
+@
+The amount of page shift you requested would cause part of the page to 
+be out of bounds. You should reduce either the size of your page or the 
+the shift amount. The shift for this plot has been adjusted.
+@
+
+@W044
+@
+A call to gpcalloc() or gpcrealloc() without a corresponding call to
+gpcfree() occurred in file @
+
+@W045
+@
+Not enough points were specified in the x or y vector to make a contour
+plot. The call was ignored.
+@
+
+@W046
+@
+Invalid font name. Check the names of the fonts in the call to font(). The
+font names must include the correct extensions. For the GraphiC fonts, the
+file extension should be .FNT. If you are using GraphiC/PST, the extension
+can be .PFB or .TTF.
+@
+
+@W047
+@
+A data array was passed to minmax() that contained no valid floating-point
+numbers (all NANs). The routine will return 0 for minimum and 1 for maximum.
+Your data can not be drawn.
+@
+
+@W048
+@
+fntchg() was called with a font selection character which was not
+associated with any loaded fonts. The active font was not changed.
+@
+
+@W049
+@
+You must specify either GPC_X_AXIS, GPC_Y_AXIS, or GPC_Z_AXIS as the
+first argument to the SetLabelSpace() function.
+@
+
+@W050
+@
+Invalid argument in curson_VB().
+@
+
+@W051
+@
+Could not allocate memory for the points arrays.
+@
+********************************************************************** ERRORS
+
+@E001
+@
+Allocation failed. Insufficient memory.
+@
+
+@E002
+@
+Could not open file.
+@
+
+@E003
+@
+Color index must be in the ranges: 0 - 15, 50 - 174, 200 - 447.
+@
+
+@E004
+@
+Device driver could not be loaded.
+@
+
+@E005
+@
+Device driver could not be initialized.
+@
+
+@E006
+@
+Could not configure printer port.
+@
+
+@E007
+@
+Separations are not supported for this conversion.
+@
+
+@E008
+@
+Detected memory that was allocated but not freed. See the file GRAPHIC.ERR
+for a list of the offending calls to gpcalloc() and gpcrealloc().
+@
+
+@E009
+@
+Viewpoint too close. Changed to isometric.
+@
+
+@E010
+@
+survis() has incorrect argument. The allowable arguments are "top" or
+"bottom".
+@
+
+@E011
+@
+Can't skip, the end of the file was reached before the desired picture.
+@
+
+@E012
+@
+File conversion failed. The output file is invalid.
+@
+
+@E013
+@
+Error reading font height.
+@
+
+@E014
+@
+Error reading character.
+@
+
+@E015
+@
+Error reading font width.
+@
+
+@E016
+@
+Maximum font data length is 500 bytes.
+@
+
+@E017
+@
+Not enough memory for an additional window.
+The region specified will not be protected.
+@
+
+@E018
+@
+Error reading stroke table.
+@
+
+@E019
+@
+Error reading descender height.
+@
+
+@E020
+@
+Error reading ascender height.
+@
+
+@E021
+@
+Error reading left extender.
+@
+
+@E022
+@
+Symbol style must be between 0 and 16. Using square.
+@
+
+@E023
+@
+Line style must be between 1 and 9. Using solid line style.
+@
+
+@E024
+@
+You should call simuplot(0) to end simultaneous plotting before calling
+endplot().
+@
+
+@E025
+@
+Maximum value for matrix row is zero.
+@
+
+@E026
+@
+TIFF conversion failed. The PostScript file will be created without a TIFF
+header.
+@
+
+@E027
+@
+Block to be freed or re-allocated not found.
+Report to Scientific Endeavors!
+@
+
+@E028
+@
+Invalid context number. The context must be in the range 0 <= c < n:
+where c is the context number passed into context() and n is the
+number of plots passed into simuplot().
+@
+
+@E029
+@
+Too many panels. Limit is 30.
+@
+
+@E030
+@
+Color separation not supported when outputing TKF commands.
+@
+
+@E031
+@
+Not enough memory to allocate storage for clipping the panel. Panel will
+not be drawn.
+@
+
+@E032
+@
+Not enough memory to fill between curves. The curves will be drawn without
+panel filling.
+@
+
+@E033
+@
+Range too small relative to size of data. The rounding routine uses
+floating point precision and the step size is too small to show with the
+size of the data. Either normalize your data or use graf() instead of
+scales(). If you continue the program the scaling will not be correct and
+your curves will not make sense.
+@
+
+@E034
+@
+Data max. must be greater than data min.
+Report this error to Scientific Endeavors.
+@
+
+@E035
+@
+Not enough memory to process this panel.
+@
+
+@E036
+@
+You have requested a panel with multiple pieces. There is not enough
+memory available to process the current piece. Other pieces will be
+processed if enough memory is available.
+@
+
+@E037
+@
+This call must be made after a call to bgnplot() in order to
+retrieve the window handles GraphiC will use for drawing.
+@
+
+@E038
+@
+This call must be made before a call to bgnplot() in order to
+set the window handles that GraphiC will use to draw to.
+@
+
+@E039
+@
+GraphiC was unable to load at least one of the requested fonts. Be sure
+the font names in the call to font() are correct and that the requested
+fonts are in your current directory or a directory specified by the
+GPC(286)(WIN)(OS2) environment variable. Your program can still run but
+no text will appear on the plot. 
+@
+
+@E040
+@
+Not enough memory to allocate the needed internal arrays to create the
+contour plot.
+@
+
+@E041
+@
+Can't allocate memory for TIFF header. The PostScript conversion will be
+attempted without a TIFF header.
+@
+
+@E042
+@
+Not enough memory to allocate storage space for the contour vectors.
+@
+
+@E043
+@
+Not enough memory for the hidden line horizons. Hidden line removal has
+been disabled.
+@
+
+@E044
+@
+Not enough memory for the color horizon. The top and bottom of the surface
+will be the same color.
+@
+
+@E045
+@
+Not enough memory to fill contours, contour rings will be drawn without
+filling.
+@
+
+@E046
+@
+Not enough memory to interpolate the data, no contours will be drawn.
+Reduce the values of nx_data and ny_data.
+@
+
+@E047
+@
+Not enough memory for splineing.
+@
+
+@E048
+@
+Not enough data points. Try a coarser grid.
+@
+
+@E049
+@
+Search failure. Try different number of grid divisions.
+@
+
+@E050
+@
+Can not output fewer points than were input.
+@
+
+@E051
+@
+No changes in the Z values. The surface or contour plot can not be
+drawn -- the area is flat.
+@
+
+@E052
+@
+Not enough memory available to shade the surface. If you choose to
+continue a wire mesh surface plot will be drawn.
+@
+
+@E053
+@
+The end of the file was reached before the desired picture was found.
+@
+
+@E054
+@
+Could not allocate arrays to create staircase. A curve will be drawn.
+@
+
+@E055
+@
+Open contours were found during a shaded contour plot. Since closed contours
+are required, the contour plot will be completed without shading.
+@
+
+@E056
+@
+Not enough memory to allocate the needed internal arrays to create
+the 3-D surface.
+@
+
+@E057
+@
+Not enough memory to allocate cross-correlation arrays
+@
+
+@E058
+@
+Not enough memory to interpolate the data, surface will not be drawn.
+Reduce the values of nx and ny.
+@
+
+@E059
+@
+Not enough memory available to load one or more of the requested fonts.
+Your program can still run but text that uses the font(s) that could not
+be loaded will either not appear, or appear in a different font.
+@
+
+@E060
+@
+At least one z value is larger than the maximum z value represented by the
+Z-Axis. Since the color bands are calculated from z-min to z-max there is
+no specified color for any part of the surface higher than z-max. The
+affected patch(s) will be left out. In order to prevent this problem from
+occurring, make sure the range of the Z-Axis is >= the range of the data.
+@
+
+@E061
+@
+Memory Guard byte trashed using TESTMEM.
+@
+
+@E062
+@
+Test pattern trashed using TESTMEM.
+@
+
+@E063
+@
+Function getrtq() in CNTPLT.C called with invalid side.
+Report this error to Scientific Endeavors.
+@
+
+@E064
+@
+GpiCreateBitmap returned an error.
+@
+
+@E065
+@
+GpiSetBitmap returned an error.
+@
+
+@E066
+@
+Picture offsets start at 1 not 0. This insert will not
+be drawn.
+@
+
+@E067
+@
+You can not specify tick mark positions without also
+specifying the labels. If you continue, labels will
+be based on even increaments with a fixed step size.
+Use the ?lab() function to specify the labels where
+the ? is the axis (x, y, or z).
+@
+**************************************************************** FATAL ERRORS
+
+@F005
+@
+Numbers on a log scale must be positive!
+@
+
+@F009
+@
+Allocation failed. Insufficient memory.
+@
+
+******************************************************************** TT Warnings
+
+@t003
+@
+GraphiC/PST could not allocate memory to draw a character.
+The plot can continue, but this TrueType character will
+not appear on the plot.
+@
+
+@t006
+@
+GraphiC/PST was unable to close the file unicode.ttf.
+This should not hamper your plot.
+@
+
+******************************************************************** TT Errors
+
+@T001
+@
+GraphiC/PST could not allocate memory to load this
+TrueType font. You may continue the plot, but no text will
+appear from this font.
+@
+
+@T002
+@
+The font specified is not a valid TrueType font. Please check
+the file extension to see if was changed to .ttf by mistake.
+@
+
+@T004
+@
+GraphiC/PST could not locate the file unicode.ttf. This file is
+required to use TrueType fonts. Please make sure the path is in
+the GPC(286)(WIN) environment variable. 
+@
+
+@T005
+@
+The file unicode.ttf has been damaged. Please reinstall GraphiC/PST
+from the original distribution disks.
+@
+
+************************************************* PS Warnings
+
+@p003
+@
+GraphiC/PST was unable to find an AFM for the specified
+font. The text will still appear, but kerning will be
+disabled for this font.
+@ 
+
+@p004
+@
+GraphiC/PST was unable to allocate memory to store the kerning
+information for a PostScript font. Kerning will be disabled
+for this font.
+@
+
+@p008
+@
+GraphiC/PST encountered an unsupported command in your
+PostScript font. It will be ignored.
+@
+
+*************************************************** PS Errors
+
+@P001
+@
+The specified font is not a PostScript font. Please check the
+extension to be sure it is correct.
+@
+
+@P002
+@
+The specified font is not a valid PostScript font. Please check
+the extension to be sure it is correct.
+@
+
+@P005
+@
+GraphiC/PST was unable to locate the file stdencod.pos. Please make
+sure its path is in the GPC(286)(WIN) environment variable. The plot
+may continue, but the font will not appear.
+@
+
+@P006
+@
+GraphiC/PST was unable to allocate the memory to load the mapping
+file for a PostScript font. The plot may continue, but the font will
+not appear.
+@
+
+@P007
+@
+GraphiC/PST was unable to allocate memory to store a PostScript
+font. The plot may continue, but this font will not appear.
+@
+
+@P009
+@
+GraphiC/PST does not support Multiple Master fonts at this time.
+An upgrade is planned, call to check on availability.
+@
+

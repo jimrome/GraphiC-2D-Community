@@ -1,0 +1,325 @@
+#ifndef GRAPHIC_CMN_INCLUDED
+#define GRAPHIC_CMN_INCLUDED
+
+#include <graphic.h>
+
+#if GPC_OS2
+PVOID G_Base_Memq;
+#endif
+
+#ifdef MULTITHREAD
+struct G_GLOBAL_DATA *g_dataq[GPC_MAX_THREADS];
+int instanceq = 0;
+#if TCQ
+extern int _multidll = 0;
+#endif
+
+#else
+
+#if GPC_OS2
+#if TCQ
+extern int _multidll = 0;
+#endif
+int instanceq = 0;
+#endif
+
+char gtextq;
+char psetflgq;
+char size_flagq;
+char demoq;
+char leg_flgq;
+char panfilq;
+int pattern_saveq;
+int lcolor_saveq;
+char crop_flgq;
+char in_plbl3q;
+char penup_flgq;
+char rotate_flgq;
+char mouse_flgq;
+char has_beepedq;
+char adding_flgq;
+
+/********************** BIT FLAGS ****************************/
+char frame_flgq;
+char right_flgq;
+char viewers_quadq;
+
+int ascq;					/*ZOOM/PRINT OPTION VARIABLE*/
+float symhtq;		/*MULTIPLIER FOR 11 PIXEL SYMBOL HEIGHT*/
+float labscalq;		/*SCALING FACTOR FOR TEXT*/
+char *cmd_strq;	   		/*COMMAND STRING FOR GPROSQ*/
+char *stringq;			/*MISC. STRING PASSER*/
+char cl_valq[16];				/*IBM COLOR VALUE CORRESPONDING TO A TEK INDEX*/
+
+float pix_convertq;	/* METRIC UNITS */
+
+int itotekq[16];
+
+Uint PSlinewq;				/* WIDTH FOR POSTSCRIPT LInes */
+int PSfntarrayq[10];
+
+int NCOLORQ;				/*THE NUMBER OF PLOT COLORS USED */
+int win_numq;				/* WINDOW HANDLER FLAG */
+char dev_typeq;				/* 0=VIDEO, 1=PRINTER, 2=CONVERT */
+
+struct G_WIN *win_structq;
+struct ADDITIONSQ add_inq;
+
+/************ UNINITIALIZED GLOBAL VARIABLES ***********/
+
+unsigned int plot_typeq; 		/* bit field axis types */
+/*  0 -> linear;   1 -> xlog;  2 -> ylog;   3-> polar;  4 -> polar log;
+    5 -> error fn; 6 -> Smith Chart;   7 -> Bar chart  */
+int axis_flgq;			/* flag which controls which axes get drawn */
+int grid_flgq;			/* flag which controls how the plot is gridded */
+int xgrid_flgq;
+int ygrid_flgq;
+int xfgrid_flgq;
+int yfgrid_flgq;
+struct crossdatq crossq;
+int wplane_flgq;
+char *tkfnameq;	/* Name of the TKF file */
+FILE *tkf_pointerq;					/*WRITE FILE*/
+FILE *tofileq;			   	/*OFFSET FILE*/
+long tkf_offsetq;
+long tkf_incrementq;
+long tkf_inc_saveq;
+FILE *tkf_pointer_saveq;
+int notekq;
+int sim_flgq;
+int xpageq;		/* pixel size of virtual page in the x dir */
+int ypageq;		/* pixel size of virtual page in the y dir */
+int xbaseq;				/* pixel location of left edge of virtual page */
+int ybaseq;				/* pixel location of lower edge of virtual page */
+int acrossq;		/* pixel size of full page in the x dir */
+int topq;		/* pixel size of full page in the y dir */
+
+/********************** SCALING FACTORS ******************************/
+/* Scaling factors are multiplied by 65536 when initialized. The usage is:
+ ( (item to be scaled) * scale_factor) / 65536. The idea is to eliminate
+ floating point calculations. */
+float xfact_pgq;			/* 4096 / (x page size) */
+float yfact_pgq;			/* 3133 / (y page size) */
+float xfact_pltq;			/* pixels per x user unit on plot */
+float yfact_pltq;			/* pixels per y user unit on plot */
+float zfact_pltq;			/* pixels per y user unit on plot */
+double x_log_baseq;
+double y_log_baseq;
+
+int xlenq;
+int ylenq;
+int zlenq;
+float x3axisq;		/*LENGTHS OF THE AXES IN FLOATING PIXELS*/
+float y3axisq;		/*LENGTHS OF THE AXES IN FLOATING PIXELS*/
+int xphysorq;
+int yphysorq;
+int xzeroq;
+int yzeroq;
+float xphysq;
+float yphysq;
+float xorigq;
+float yorigq;
+float zorigq;
+float xstepq;
+float ystepq;
+float xmaxq;
+float ymaxq;
+float zmaxq;
+int nxfineq;			/* number of fine x divisions */
+int nyfineq;			/* number of fine y divisions */
+int borderq;			/* space allowance between edge and labels */
+int titloffq;
+int xlspcq;			/* space between axes and labels on x_axis */
+int ylspcq;			/* space between axes and labels on y_axis */
+int zlspcq;			/* space between axes and labels on z_axis */
+int tkhtq;				/* height for tick marks */
+int labspq;			/* label spacing */
+
+int xl_cropq;
+int yl_cropq;
+int xh_cropq;
+int yh_cropq;
+
+float lablhtq;
+float titlhtq;
+float x_namhtq;
+float y_namhtq;
+char plot3q;
+struct HORIZON horizq;				/*3-D UPPER AND LOWER HORIZONS*/
+GTICK_POS *x_tickposq;			/* POINT TO X AXIS TICK POSITIONS */
+GTICK_POS *y_tickposq;			/* POINT TO Y AXIS TICK POSITIONS */
+GTICK_POS *z_tickposq;			/* POINT TO Z AXIS TICK POSITIONS */
+
+struct D_3_CONVERSION_FACTORS d3_convertq;
+
+int *horizcq;			/*3-D HORIZON SEPARATING TOP FROM BOTTOM OF SURFACE*/
+
+int surface_clrq;
+char d3_clrflgq;
+
+float axposq;
+int tcurveq;		/* Line thickness for curves */
+
+int x0q;			/* Global line starting end */
+int y0q;
+
+int n_legq;
+int strcntq;
+int *styleq;					/*LINE AND SYMBOL STYLES FOR LEGEND*/
+int *symclrq;				/*COLORS FOR LEGEND ENTRIES */
+
+int hxoldq;
+int hyoldq;
+int lyoldq;
+int lsxoldq;
+int lsyoldq;
+
+struct GDRQ gdrq[3];   /* DRIVER NAMES AND LOCATIONS */
+int lab_flgq;
+
+/* PARAMETERS FOR POLAR PLOTS */
+int pixrq;			/* Number of pixels in one radial division */
+float r_polminq;	/* Minimum value of log polar plot */
+float rfact_polq;	/* Number of pixels per user unit */
+int x0_polq;		/* Pixel coordinates of polar origin */
+int y0_polq;
+
+/* TRIANGLE PLOTS */
+int tri_lenq;
+float tri_factq;
+char tri_plotq;
+/* POLAR CONTOURS */
+int polarq;
+
+/* PLAY.C */
+int abortq;
+
+/* LABSET.C */
+char **xstrlbq;				/* POINT TO X AXIS STRING LABELS */
+char **ystrlbq;				/* POINT TO Y AXIS STRING LABELS */
+char **zstrlbq;				/* POINT TO Y AXIS STRING LABELS */
+int x_angq;					/* X AXIS LABEL ANGLE */
+int y_angq;					/* Y AXIS LABEL ANGLE */
+int z_angq;					/* Z AXIS LABEL ANGLE */
+
+/* LEGEND.C */
+int xlegq;
+int ylegq;
+int legwidq;
+int leg_txtclr;
+int iq;
+int drawb;
+int *curve_thickness;
+
+/* LPLT.C */
+struct LINESTART *line_start;
+struct GXYPAIRSQ *line_end;
+
+/* MESSAGES.C */
+char in_gmessageq;
+char *mesgptrq;
+char mesgposq;
+
+/* SVC.C */
+char dotq;
+char filled_ellipseq;
+int ellipse_patternq;
+char ellipse_borderq;
+int symcntq;
+int symfillq;
+
+/* TEKINT */
+int printingq;
+int y00txtq;
+int y11txtq;
+char replayq;
+int newchq;
+char clookq;
+char commaq;
+char gflagq;                      /* Signals OK to do a scrntypeq('g'). */
+int xtextq;
+int ytextq;
+int numtq;
+int dentxtq;
+int x0txtq;
+int x1txtq;
+int ydtxtq;
+unsigned char hxq;
+unsigned char hyq;
+unsigned char lyq;
+unsigned char extraq;
+unsigned char extrabq;
+char insertq;
+int cvalq[30][3]; /* Array of TEK colors - hue, lightness, saturation. */
+int beep_frequencyq;
+int beep_durationq;
+
+/* TPLT.C */
+int printer_choice;
+char ascgq;
+
+struct TitlDatq titleq;
+struct TitlDatq xnameq;
+struct TitlDatq ynameq;
+struct TitlDatq anameq;
+struct TitlDatq bnameq;
+struct TitlDatq cnameq;
+int NUM_OF_FONTS;
+
+char *fntptr[FNTNUM];
+unsigned char escsym[FNTNUM];
+struct G_FONT g_fontq[FNTNUM];
+
+/* GRAPHIC FUNCTION PACKETS */
+struct GINITQ g_iq[3];
+struct GSCRNTYPEQ g_scq;
+struct GCLEARQ g_clsq;
+struct GDOTQ g_dotq;
+struct GLINEQ g_lq;
+struct GPANELQ g_pq;
+struct GTEXTQ g_tq;
+struct GCHARQ g_cq;
+struct GTERMINATEQ g_quitq;
+struct GPRINTQ g_prntq;
+struct GFONLYQ g_fonlyq;
+struct GFILEOPENQ g_fopenq;
+struct GFILECLOSEQ g_fcloseq;
+struct GWRITEFILEQ g_fwriteq;
+struct CURPOS g_cposq;
+struct GDUMPQ g_dumpq;
+struct GZOOMQ g_zq;
+struct GERCHARQ g_erq;
+struct G_GET_CHAR g_get_charq;
+struct G_PAGE_SIZE g_page_sizeq;
+struct G_PRINT_STRING g_print_stringq;
+#if GPC_OS2
+int convert_flgq;
+struct PRINT_DATA print_dataq;
+#endif
+#if GPC_WIN
+int convert_flgq;
+struct G_REDRAWQ g_rdq;
+#endif
+
+#if GPC_UNX
+int *ftableq = NULL;
+int rfposq = 0;
+int rfincq = 0;
+#else
+GPC_LIBPROC ftableq = NULL;
+#endif
+#endif
+
+/* MISSING VALUE INITIALIZATIONS */
+/* this is how various special NaN's can be defined */
+MISSING_FLOAT_TYPE MISSING_FLOAT = {{ 255, 255, 255, 255 }};
+MISSING_FLOAT_TYPE EMPTY_FLOAT =   {{ 254, 255, 255, 255 }};
+MISSING_FLOAT_TYPE AUTO_FLOAT =    {{ 253, 255, 255, 255 }};
+MISSING_DOUBLE_TYPE MISSING_DOUBLE = {{ 255, 255, 255, 255, 255, 255, 255, 255 }};
+MISSING_FLOAT_TYPE DATA_FLOAT =    {{ 252, 255, 255, 255 }};
+
+#if GPC_WIN
+HANDLE hwin_struct;
+#endif
+
+#endif
