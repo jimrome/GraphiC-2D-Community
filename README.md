@@ -2,7 +2,7 @@
 
 **GraphiC 2D Community Edition** is a fast, lightweight, standalone 2D scientific plotting library for **C/C++**, **Modern Fortran 2003+**, **Python 3**, **Julia (GraphiC.jl)**, and **Java 22 (Foreign Function & Memory API)**.
 
-Developed by plasma physicists James Rome and George Kelley at Oak Ridge National Laboratory, GraphiC has generated publication-grade figures for over 40 years. This modernized Community Edition provides native SVG vector output with sub-millisecond execution speeds and zero external rendering dependencies.
+Developed in the 1980s by plasma physicists James Rome and George Kelley while working at a national laboratory, GraphiC has generated publication-grade figures for over 40 years. This modernized Community Edition provides native SVG vector output with sub-millisecond execution speeds and zero external rendering dependencies.
 
 ---
 
