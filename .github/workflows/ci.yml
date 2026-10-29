@@ -22,7 +22,7 @@ jobs:
           - name: "Ubuntu (Intel ifx / icx)"
             os: ubuntu-latest
             compiler: intel
-            version: "latest"
+            version: "2026.1"
           - name: "macOS (gfortran / gcc)"
             os: macos-latest
             compiler: gcc
@@ -34,7 +34,7 @@ jobs:
           - name: "Windows (Intel ifx / icx)"
             os: windows-latest
             compiler: intel
-            version: "latest"
+            version: "2026.1"
 
     defaults:
       run:
@@ -45,16 +45,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Fortran & C toolchain (${{ matrix.compiler }})
-        uses: fortran-lang/setup-fortran@v1
+        uses: fortran-lang/setup-fortran@main
         with:
           compiler: ${{ matrix.compiler }}
           version: ${{ matrix.version }}
 
-      - name: Setup fpm
+      - name: Setup fpm (Linux & Windows)
+        if: runner.os != 'macOS'
         uses: fortran-lang/setup-fpm@v10
         with:
-          version: "latest"
+          fpm-version: "v0.13.0"
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup fpm (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install fpm
 
       - name: Display compiler and fpm versions
         run: |
@@ -71,10 +77,8 @@ jobs:
       - name: Run all Fortran examples and verify SVG output
         run: |
           examples=(sample d2test logtest bartest erftest multi_y svgtest turbulence)
-          expected_svgs=(sample.svg d2test.svg logtest.svg bartest.svg erftest.svg multi_y.svg svgtest_1.svg turbulence.svg)
-          for i in "${!examples[@]}"; do
-            ex="${examples[$i]}"
-            svg="${expected_svgs[$i]}"
+          for ex in "${examples[@]}"; do
+            svg="${ex}.svg"
             echo "=== Running example: ${ex} ==="
             rm -f "${svg}"
             fpm run --example "${ex}"
