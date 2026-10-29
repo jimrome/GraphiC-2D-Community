@@ -16,11 +16,11 @@ jobs:
       matrix:
         include:
           - name: "Ubuntu (gfortran / gcc)"
-            os: ubuntu-latest
+            os: ubuntu-24.04
             compiler: gcc
-            version: "latest"
+            version: "14"
           - name: "Ubuntu (Intel ifx / icx)"
-            os: ubuntu-latest
+            os: ubuntu-24.04
             compiler: intel
             version: "2026.1"
           - name: "macOS (gfortran / gcc)"
@@ -77,9 +77,11 @@ jobs:
       - name: Run all Fortran examples and verify SVG output
         run: |
           examples=(sample d2test logtest bartest erftest multi_y svgtest turbulence)
-          for ex in "${examples[@]}"; do
-            svg="${ex}.svg"
-            echo "=== Running example: ${ex} ==="
+          expected_svgs=(sample.svg d2test.svg logtest.svg bartest.svg erftest.svg multi_y.svg svgtest.svg turbulence_f.svg)
+          for i in "${!examples[@]}"; do
+            ex="${examples[$i]}"
+            svg="${expected_svgs[$i]}"
+            echo "=== Running example: ${ex} (expecting ${svg}) ==="
             rm -f "${svg}"
             fpm run --example "${ex}"
             if [ ! -s "${svg}" ]; then
