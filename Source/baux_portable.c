@@ -190,6 +190,23 @@ static FILE *check_dir_hierarchy(const char *basedir, const char *filename, cons
 		fp = try_file(subdir, filename, mode);
 		if (fp != NULL) return fp;
 
+		/* Also check fpm dependency locations for client projects */
+		snprintf(subdir, sizeof(subdir), "%s/build/dependencies/graphic", curdir);
+		fp = try_file(subdir, filename, mode);
+		if (fp != NULL) return fp;
+
+		snprintf(subdir, sizeof(subdir), "%s/dependencies/graphic", curdir);
+		fp = try_file(subdir, filename, mode);
+		if (fp != NULL) return fp;
+
+		snprintf(subdir, sizeof(subdir), "%s/build/dependencies/GraphiC-2D-Community", curdir);
+		fp = try_file(subdir, filename, mode);
+		if (fp != NULL) return fp;
+
+		snprintf(subdir, sizeof(subdir), "%s/dependencies/GraphiC-2D-Community", curdir);
+		fp = try_file(subdir, filename, mode);
+		if (fp != NULL) return fp;
+
 		/* Move up one directory level */
 		char nextdir[1024];
 		snprintf(nextdir, sizeof(nextdir), "%s/..", curdir);
@@ -251,7 +268,8 @@ FILE * TYPE gfopen(char *filename, char *mode, size_t bigbuff)
 		char exepath[1024];
 		if (GetModuleFileNameA(NULL, exepath, sizeof(exepath)) > 0) {
 			char *slash = strrchr(exepath, '\\');
-			if (slash == NULL) slash = strrchr(exepath, '/');
+			char *fslash = strrchr(exepath, '/');
+			if (fslash != NULL && (slash == NULL || fslash > slash)) slash = fslash;
 			if (slash != NULL) {
 				*slash = '\0';
 				fptr = check_dir_hierarchy(exepath, filename, mode, 5);
@@ -265,7 +283,8 @@ FILE * TYPE gfopen(char *filename, char *mode, size_t bigbuff)
 		                       (LPCSTR)&gfopen, &hm)) {
 			if (GetModuleFileNameA(hm, exepath, sizeof(exepath)) > 0) {
 				char *slash = strrchr(exepath, '\\');
-				if (slash == NULL) slash = strrchr(exepath, '/');
+				char *fslash = strrchr(exepath, '/');
+				if (fslash != NULL && (slash == NULL || fslash > slash)) slash = fslash;
 				if (slash != NULL) {
 					*slash = '\0';
 					fptr = check_dir_hierarchy(exepath, filename, mode, 5);
@@ -321,6 +340,21 @@ FILE * TYPE gfopen(char *filename, char *mode, size_t bigbuff)
 	}
 #endif
 
+	/* 4. Search relative to compile-time source path (__FILE__) */
+	{
+		char srcpath[1024];
+		strncpy(srcpath, __FILE__, sizeof(srcpath) - 1);
+		srcpath[sizeof(srcpath) - 1] = '\0';
+		char *slash = strrchr(srcpath, '\\');
+		char *fslash = strrchr(srcpath, '/');
+		if (fslash != NULL && (slash == NULL || fslash > slash)) slash = fslash;
+		if (slash != NULL) {
+			*slash = '\0';
+			fptr = check_dir_hierarchy(srcpath, filename, mode, 3);
+			if (fptr != NULL) goto done;
+		}
+	}
+
 done:
 	if (fptr != NULL && bigbuff > 0) {
 		if (bigbuff == 1)
@@ -339,12 +373,10 @@ int TYPE gfclose(FILE *file)
 
 FILE * TYPE gpc_tmpfile(void)
 {
-	FILE *fp = tmpfile();
-	if (fp != NULL)
-		return fp;
+	FILE *fp = NULL;
 
 #if defined(_WIN32)
-	/* Windows fallback when tmpfile() fails (e.g. non-admin permission error on C:\) */
+	/* Use Windows temp directory directly (avoids tmpfile() C:\ root permission errors) */
 	char temp_path[MAX_PATH];
 	char temp_file[MAX_PATH];
 	DWORD ret = GetTempPathA(sizeof(temp_path), temp_path);
@@ -354,15 +386,23 @@ FILE * TYPE gpc_tmpfile(void)
 			if (fp == NULL) {
 				fp = fopen(temp_file, "w+b");
 			}
-			return fp;
+			if (fp != NULL)
+				return fp;
 		}
 	}
+	fp = tmpfile();
+	if (fp != NULL)
+		return fp;
 	fp = fopen(".gpc_tmp.tmp", "w+bTD");
 	if (fp == NULL) {
 		fp = fopen(".gpc_tmp.tmp", "w+b");
 	}
 	return fp;
 #else
+	fp = tmpfile();
+	if (fp != NULL)
+		return fp;
+
 	/* POSIX fallback using $TMPDIR or /tmp */
 	char temp_file[512];
 	const char *tmpdir = getenv("TMPDIR");
@@ -499,8 +539,8 @@ unsigned int TYPE cstsq(void)
 
 int TYPE ci_scq(void)
 {
-	const char *nonint = getenv("GPC_NONINTERACTIVE");
-	if (nonint != NULL) {
+	const char *inter = getenv("GPC_INTERACTIVE");
+	if (inter == NULL || inter[0] == '\0' || inter[0] == '0') {
 		return 13;
 	}
 #if !defined(_WIN32)
@@ -601,6 +641,7 @@ void zcursonq(void)
 {
 }
 
+#if !defined(_WIN32)
 char * TYPE itoa(int value, char *str, int radix)
 {
 	if (str == NULL)
@@ -643,6 +684,7 @@ char * TYPE strlwr(char *str)
 	}
 	return str;
 }
+#endif /* !defined(_WIN32) */
 
 /* Portable implementations for crosshair cursor and digitizer routines */
 void TYPE curson(int row, int col, float **fx, float **fy, int *find)

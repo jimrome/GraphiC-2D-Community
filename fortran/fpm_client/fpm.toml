@@ -1,0 +1,8 @@
+name = "graphic_client_demo"
+version = "0.1.0"
+license = "MIT"
+author = "James Rome, Sc.D."
+description = "Minimal standalone Fortran client project consuming GraphiC as an fpm dependency"
+
+[dependencies]
+graphic = { git = "https://github.com/jimrome/GraphiC-2D-Community.git" }

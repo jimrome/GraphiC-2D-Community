@@ -34,14 +34,13 @@ void TYPE GCLASS simuplot(int numplots)
 			return;
 		}
 		if (!notekq) {
+			(void)tmpnamesq;
 			tmpfilesq = (FILE **)gpcalloc((unsigned)numplots,
 				sizeof(FILE *));
 			tkf_pointer_save = (FILE **)gpcalloc((unsigned)numplots,
 				sizeof(FILE *));
-			tmpnamesq = (char **)gpcalloc((unsigned)numplots,
-				sizeof(char *));
-			if (tmpfilesq == NULL || tmpnamesq == NULL) {
-				gpcfree((void **) &tmpnamesq);
+			if (tmpfilesq == NULL || tkf_pointer_save == NULL) {
+				gpcfree((void **) &tkf_pointer_save);
 				gpcfree((void **) &tmpfilesq);
 				gpcfree((void **) &plotparamsq);
 				sim_flgq = 0;
@@ -51,22 +50,12 @@ void TYPE GCLASS simuplot(int numplots)
 			for (i = 0; i < numplots; i++)
 				tkf_pointer_save[i] = tkf_pointerq;
 			for (i = 0; i < numplots; i++) {
-				tmpnamesq[i] = NULL;
-				tmpnamesq[i] = (char *)gpcalloc((unsigned)L_tmpnam,
-					sizeof(char));
-				if (tmpnamesq[i] == NULL) {
-					tkf_pointerq = tkf_pointer_save[0];
-					messageq(ERRQ, 1);		/* Out of Memory */
-				}
-				tmpnam((char *)tmpnamesq[i]);
-				tmpfilesq[i] = gfopen((char *)tmpnamesq[i], "w+b", 1);
+				tmpfilesq[i] = gpc_tmpfile();
 				if (tmpfilesq[i] == NULL) {
 					for (j = i - 1; j >= 0; j--) {
 						gfclose((FILE *)tmpfilesq[j]);
-						remove((char *)tmpnamesq[j]);
-						gpcfree((void **) &tmpnamesq[i]);
 					}
-					gpcfree((void **) &tmpnamesq);
+					gpcfree((void **) &tkf_pointer_save);
 					gpcfree((void **) &tmpfilesq);
 					gpcfree((void **) &plotparamsq);
 					sim_flgq = 0;
@@ -101,8 +90,6 @@ void TYPE GCLASS simuplot(int numplots)
 						gfclose(tkf_pointerq);
 					}
 					gfclose((FILE *)tmpfilesq[i]);
-					remove((char *)tmpnamesq[i]);
-					gpcfree((void **) &tmpnamesq[i]);
 					tkf_pointerq = tkf_pointer_save[i];
 					tkf_pointer_save[i] = NULL;
 				}
@@ -110,9 +97,7 @@ void TYPE GCLASS simuplot(int numplots)
 			tkf_pointerq = tkf_pointer_save[0];
 			tkf_pointer_save[0] = NULL;
 			gfclose((FILE *)tmpfilesq[0]);
-			remove((char *)tmpnamesq[0]);
-			gpcfree((void **) &tmpnamesq[0]);
-			gpcfree((void **) &tmpnamesq);
+			gpcfree((void **) &tkf_pointer_save);
 			gpcfree((void **) &tmpfilesq);
 		}
 		gpcfree((void **) &plotparamsq);

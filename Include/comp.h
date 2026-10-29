@@ -114,5 +114,9 @@
   #define IBMQ 0
 #endif
 
+#ifndef GPC_COMMUNITY
+  #define GPC_COMMUNITY 1
+#endif
+
 #endif /* COMP_H */
 

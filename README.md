@@ -1,5 +1,7 @@
 # GraphiC 2D Community Edition (v7.0)
 
+[![CI](https://github.com/jimrome/GraphiC-2D-Community/actions/workflows/ci.yml/badge.svg)](https://github.com/jimrome/GraphiC-2D-Community/actions/workflows/ci.yml)
+
 **GraphiC 2D Community Edition** is a fast, lightweight, standalone 2D scientific plotting library for **C/C++**, **Modern Fortran 2003+**, **Python 3**, **Julia (GraphiC.jl)**, and **Java 22 (Foreign Function & Memory API)**.
 
 Developed in the 1980s by plasma physicists James Rome and George Kelley while working at a national laboratory, GraphiC has generated publication-grade figures for over 40 years. This modernized Community Edition provides native SVG vector output with sub-millisecond execution speeds and zero external rendering dependencies.
@@ -59,15 +61,58 @@ open sample.html
 ```
 
 ### 3. Build & Run with Fortran Package Manager (fpm)
-If you use `fpm` (the modern official Fortran build tool):
+Continuously tested via GitHub Actions with `gfortran` (`gcc`) and Intel `ifx` (`icx`) across Linux, macOS, and Windows.
+
+#### A. Consuming GraphiC as an `fpm` Dependency in Your Project
+Add `graphic` to your project's `fpm.toml` (see [`fortran/fpm_client/`](fortran/fpm_client/) for a complete standalone client project):
+```toml
+[dependencies]
+graphic = { git = "https://github.com/jimrome/GraphiC-2D-Community.git" }
+```
+Then `use graphic` in your `app/main.f90` and run `fpm run`:
+```fortran
+program main
+  use graphic
+  implicit none
+  real :: x(101), y(101)
+  integer :: i
+
+  do i = 1, 101
+    x(i) = real(i - 1) * 0.1
+    y(i) = exp(-0.25 * x(i)) * cos(2.0 * x(i))
+  end do
+
+  call gpc_begin(DRIVER_SVG, "damped_oscillator.tkf")
+  call gpc_font(1, "Times.ttf", "H")
+  call gpc_page(9.0, 6.5)
+  call gpc_area2d(6.8, 4.6)
+  call gpc_xname("Time t (s)\1")
+  call gpc_yname("Amplitude x(t)\1")
+  call gpc_head("Damped Harmonic Oscillator\1")
+  call gpc_grid(1)
+  call gpc_graf(0.0, 2.0, 10.0, -1.0, 0.5, 1.0)
+  call gpc_color(COLOR_BLUE)
+  call gpc_linethk(5)
+  call gpc_curve(x, y, 101, 0)
+  call gpc_endplot()
+  call gpc_stop()
+end program main
+```
+
+#### B. Building & Running the Examples in This Repository
 ```bash
-# Build library and Fortran modules
+# Build library, Fortran modules, and all 8 examples
 fpm build
 
 # Run any example
 fpm run --example sample
 fpm run --example d2test
 fpm run --example logtest
+fpm run --example bartest
+fpm run --example erftest
+fpm run --example multi_y
+fpm run --example svgtest
+fpm run --example turbulence
 ```
 
 ### 4. Build with Traditional Make (Fortran)

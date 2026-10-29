@@ -205,6 +205,29 @@ module graphic_iso
       type(c_ptr), value :: opt
     end subroutine c_uvector
 
+    subroutine c_vector(x1, y1, x2, y2, head, sz, opt) bind(C, name="vector")
+      import :: c_float, c_ptr
+      real(kind=c_float), value :: x1, y1, x2, y2, head, sz
+      type(c_ptr), value :: opt
+    end subroutine c_vector
+
+    subroutine c_uline(xf, yf, xt, yt, newcurv) bind(C, name="uline")
+      import :: c_float, c_int
+      real(kind=c_float), value :: xf, yf, xt, yt
+      integer(kind=c_int), value :: newcurv
+    end subroutine c_uline
+
+    subroutine c_linch(x1, y1, x2, y2, newcurv) bind(C, name="linch")
+      import :: c_float, c_char
+      real(kind=c_float), value :: x1, y1, x2, y2
+      character(kind=c_char), value :: newcurv
+    end subroutine c_linch
+
+    subroutine c_line(xf, yf, xt, yt, newcurv) bind(C, name="line")
+      import :: c_int
+      integer(kind=c_int), value :: xf, yf, xt, yt, newcurv
+    end subroutine c_line
+
     subroutine c_axesoff() bind(C, name="axesoff")
     end subroutine c_axesoff
 
@@ -665,7 +688,9 @@ module graphic_iso
       real(kind=c_float), value :: pos
     end subroutine c_plane3d
 
-    subroutine c_colorkeyl(minv, maxv, intensity, nintensity, legllx, leglly, legurx, legury, labint, format, fontc, height, angle) bind(C, name="ColorKeyL")
+    subroutine c_colorkeyl(minv, maxv, intensity, nintensity, legllx, leglly, &
+                           legurx, legury, labint, format, fontc, height, angle) &
+                           bind(C, name="ColorKeyL")
       import :: c_float, c_int, c_ptr, c_char
       real(kind=c_float), value :: minv, maxv, legllx, leglly, legurx, legury, height
       type(c_ptr), value :: intensity, format
@@ -904,7 +929,9 @@ module graphic_iso
       real(kind=c_float), value :: minv, maxv, symheight
     end subroutine c_gpc_scatter
 
-    subroutine c_colorkey_gradient(minv, maxv, cmap_id, legllx, leglly, legurx, legury, nticks, format, fontc, height, angle) bind(C, name="ColorKeyGradient")
+    subroutine c_colorkey_gradient(minv, maxv, cmap_id, legllx, leglly, &
+                                   legurx, legury, nticks, format, fontc, &
+                                   height, angle) bind(C, name="ColorKeyGradient")
       import :: c_float, c_int, c_ptr, c_char
       real(kind=c_float), value :: minv, maxv, legllx, leglly, legurx, legury, height
       integer(kind=c_int), value :: cmap_id, nticks, angle

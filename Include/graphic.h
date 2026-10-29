@@ -569,7 +569,7 @@ typedef int (*GPC_LIBPROC)( void *, int );
 #undef SetDefaultPrinter
 #endif
 
-#if !GPC_WIN && !defined(_MSC_VER)
+#if !GPC_WIN && !defined(_MSC_VER) && !defined(_WIN32)
 char * TYPE itoa(int value, char *str, int radix);
 char * TYPE strupr(char *str);
 char * TYPE strlwr(char *str);

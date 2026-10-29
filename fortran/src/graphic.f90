@@ -24,10 +24,11 @@ module graphic
   integer(c_int), parameter :: COLOR_BRWHITE   = 15_c_int
 
   ! Line Style Constants
-  integer(c_int), parameter :: STYLE_SOLID     = 0_c_int
-  integer(c_int), parameter :: STYLE_DOTTED    = 1_c_int
-  integer(c_int), parameter :: STYLE_DASHED    = 2_c_int
+  integer(c_int), parameter :: STYLE_SOLID     = 1_c_int
+  integer(c_int), parameter :: STYLE_DOTTED    = 2_c_int
   integer(c_int), parameter :: STYLE_DOTDASH   = 3_c_int
+  integer(c_int), parameter :: STYLE_DASHED    = 4_c_int
+  integer(c_int), parameter :: STYLE_LONGDASH  = 5_c_int
 
   ! Driver Codes
   character(kind=c_char), parameter :: DRIVER_SVG = 'S'
@@ -93,9 +94,11 @@ contains
 
   ! Terminate plotting session
   subroutine gpc_stop()
+    integer :: u, ios
     call c_stopplot()
     if (len_trim(last_tkf) > 0) then
-      call execute_command_line("rm -f " // trim(last_tkf))
+      open(newunit=u, file=trim(last_tkf), status='old', iostat=ios)
+      if (ios == 0) close(u, status='delete', iostat=ios)
       last_tkf = ""
     end if
   end subroutine gpc_stop
@@ -311,8 +314,8 @@ contains
 
   ! Render 3D surface mesh with hidden-line elimination
   subroutine gpc_surface(zmat, nx, ny)
-    real, dimension(nx, ny), intent(in) :: zmat
     integer, intent(in) :: nx, ny
+    real, dimension(nx, ny), intent(in) :: zmat
     real(c_float), allocatable :: flat(:)
     character(kind=c_char, len=:), allocatable, target :: vis
     integer :: i, j, idx
@@ -333,17 +336,17 @@ contains
   end subroutine gpc_surface
 
   subroutine gpc_surmat(zmat, nx, ny)
-    real, dimension(nx, ny), intent(in) :: zmat
     integer, intent(in) :: nx, ny
+    real, dimension(nx, ny), intent(in) :: zmat
     call gpc_surface(zmat, nx, ny)
   end subroutine gpc_surmat
 
   ! Draw 2D contour map
   subroutine gpc_contour(zmat, x, nx, y, ny, orig, step, maxq, labint)
+    integer, intent(in) :: nx, ny
     real, dimension(nx, ny), intent(in) :: zmat
     real, dimension(nx), intent(in) :: x
     real, dimension(ny), intent(in) :: y
-    integer, intent(in) :: nx, ny
     real, intent(in) :: orig, step, maxq
     integer, intent(in) :: labint
     real(c_float), allocatable :: flat(:), fx(:), fy(:)
@@ -372,10 +375,10 @@ contains
   end subroutine gpc_contour
 
   subroutine gpc_conmat(zmat, x, nx, y, ny, orig, step, maxq, labint)
+    integer, intent(in) :: nx, ny
     real, dimension(nx, ny), intent(in) :: zmat
     real, dimension(nx), intent(in) :: x
     real, dimension(ny), intent(in) :: y
-    integer, intent(in) :: nx, ny
     real, intent(in) :: orig, step, maxq
     integer, intent(in) :: labint
     call gpc_contour(zmat, x, nx, y, ny, orig, step, maxq, labint)
@@ -1121,10 +1124,10 @@ contains
   end subroutine gpc_waterfallcurve
 
   subroutine gpc_waterfallplot(x, y, z, nx, ny)
+    integer, intent(in) :: nx, ny
     real(c_float), target, intent(in) :: x(*)
     real(c_float), target, intent(in) :: y(*)
     real(c_float), target, intent(in) :: z(nx, ny)
-    integer, intent(in) :: nx, ny
     type(c_ptr), allocatable, target :: row_ptrs(:)
     integer :: i
 
@@ -1359,8 +1362,8 @@ contains
   end subroutine gpc_trifun
 
   subroutine gpc_surmat2(zmat, nx, ny)
-    real(kind=c_float), dimension(nx, ny), target, intent(in) :: zmat
     integer, intent(in) :: nx, ny
+    real(kind=c_float), dimension(nx, ny), target, intent(in) :: zmat
     type(c_ptr), dimension(ny), target :: row_ptrs
     integer :: j
 
